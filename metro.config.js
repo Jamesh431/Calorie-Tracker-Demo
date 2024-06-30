@@ -1,13 +1,11 @@
-// This replaces `const { getDefaultConfig } = require('expo/metro-config');`
+// Import necessary functions
 const { getSentryExpoConfig } = require("@sentry/react-native/metro");
-const { getDefaultConfig } = require("expo/metro-config");
 
-// This replaces `const config = getDefaultConfig(__dirname);`
-const config = getSentryExpoConfig(__dirname);
+// Use Sentry configuration
+module.exports = getSentryExpoConfig(__dirname);
 
-module.exports = config;
-
-const defaultConfig = getDefaultConfig(__dirname);
+// If you need to add custom resolver settings, do so after importing Sentry config
+const defaultConfig = require("expo/metro-config").getDefaultConfig(__dirname);
 
 defaultConfig.resolver.extraNodeModules = {
   "@components": `${__dirname}/src/components`,

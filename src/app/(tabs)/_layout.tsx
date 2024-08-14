@@ -21,6 +21,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="add-circle-outline" size={20} color={color} />
           ),
+          unmountOnBlur: true,
         }}
       />
 

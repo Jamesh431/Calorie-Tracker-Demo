@@ -1,11 +1,16 @@
-import BarcodeScanner from "@/components/BarcodeScanner";
-import Camera from "@/components/Camera";
 import { useState } from "react";
 import { View, Pressable, Text } from "react-native";
+
+import BarcodeScanner from "@/components/BarcodeScanner";
+import Camera from "@/components/Camera";
+
+import { calorieLoggerStyles } from "@/styles/app/tabs/logger/calorieLoggerStyles";
 
 export default function CalorieLogger() {
   const [showingCamera, setShowingCamera] = useState<boolean>(false);
   const [showingScanner, setShowingScanner] = useState<boolean>(false);
+
+  const styles = { ...calorieLoggerStyles };
 
   const ShowCamera = () => {
     if (showingCamera) {
@@ -33,19 +38,19 @@ export default function CalorieLogger() {
     }
 
     return (
-      <Pressable onPress={() => setShowingScanner(true)}>
-        <Text>Show SCANNER</Text>
+      <Pressable onPress={() => setShowingScanner(true)} style={styles.button}>
+        <Text style={styles.buttonTxt}>Show barcode scanner</Text>
       </Pressable>
     );
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      {/* <View style={{ flex: 0.5 }}>
+    <View style={styles.container}>
+      {/* <View style={{ flex: 0.5 }}> // this is for taking progress pics, not mounted yet
         <ShowCamera />
       </View> */}
 
-      <View style={{ flex: 0.5 }}>
+      <View style={showingScanner ? null : styles.scannerWrapper}>
         <ShowScanner />
       </View>
     </View>

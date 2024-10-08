@@ -8,6 +8,8 @@ import {
 
 import NutrientsBreakdown from "./NutrientsBreakdown";
 
+import { barcodeScannerStyles } from "@/styles/app/components/barcodeScannerStyling";
+
 export default function BarcodeScanner() {
   const [perms, requestPerms] = useCameraPermissions();
   const [scanData, setScanData] = useState<any>({});
@@ -15,6 +17,8 @@ export default function BarcodeScanner() {
   const [showResults, setShowResults] = useState<Boolean>(false);
 
   const cameraRef = useRef<CameraView>(null);
+
+  const styles = { ...barcodeScannerStyles };
 
   const successfulScan = (result: BarcodeScanningResult) => {
     if (isScannerReady) {
@@ -47,7 +51,7 @@ export default function BarcodeScanner() {
   //   return (
   //     <View style={{ flex: 1 }}>
   //       <View style={{ justifyContent: "center", alignItems: "center" }}>
-  //         <Text style={{ textAlign: "center" }}>{scanData}</Text>
+  //         <Text style={{ textAlign: "center" }}>{scanData}</Text>  // error caused by scan data trying to render, what is this supposed to be?
   //       </View>
   //     </View>
   //   );
@@ -81,15 +85,9 @@ export default function BarcodeScanner() {
       }}
       style={{ height: "100%" }}
     >
-      <View
-        style={{
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <View style={{ justifyContent: "center" }}>
-          <Text>Scan ya food</Text>
+      <View style={styles.UIContainer}>
+        <View style={styles.UIWrapper}>
+          <Text style={styles.UIText}>Scan the barcode for your food</Text>
         </View>
       </View>
     </CameraView>

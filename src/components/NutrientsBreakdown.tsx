@@ -54,7 +54,7 @@ export default function NutrientsBreakdown({ foodCode }: { foodCode: any }) {
       <Text>Brand Owner: {foodObj.brandOwner}</Text>
       <Text>Serving Size: {foodObj.servingSizeTotal}</Text>
 
-      <Text>Nutrients: </Text>
+      <Text>Nutrients</Text>
 
       <MountNutrients />
     </View>

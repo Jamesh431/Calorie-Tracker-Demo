@@ -9,6 +9,10 @@ import {
 import NutrientsBreakdown from "./NutrientsBreakdown";
 
 import { barcodeScannerStyles } from "@/styles/app/components/barcodeScannerStyling";
+import {
+  basicBlueButtonStyles,
+  basicDisabledButtonStyles,
+} from "@/styles/common/buttons";
 
 export default function BarcodeScanner() {
   const [perms, requestPerms] = useCameraPermissions();
@@ -18,7 +22,11 @@ export default function BarcodeScanner() {
 
   const cameraRef = useRef<CameraView>(null);
 
-  const styles = { ...barcodeScannerStyles };
+  const styles = {
+    ...barcodeScannerStyles,
+    ...basicBlueButtonStyles,
+    ...basicDisabledButtonStyles,
+  };
 
   const successfulScan = (result: BarcodeScanningResult) => {
     if (isScannerReady) {
@@ -59,16 +67,27 @@ export default function BarcodeScanner() {
 
   if (showResults) {
     return (
-      <View>
-        <View>
-          <Text>Scan results: </Text>
-
-          <Pressable onPress={() => setShowResults(false)}>
-            <Text>Scan Again</Text>
-          </Pressable>
-        </View>
+      <View style={{}}>
+        <Text>Scan results: </Text>
 
         <NutrientsBreakdown foodCode={scanData} />
+
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Pressable
+            onPress={() => setShowResults(false)}
+            style={styles.basicBlueBtn}
+          >
+            <Text style={styles.basicBtnTxt}>Scan Again</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={() => null}
+            style={styles.basicDisabledBtn}
+            disabled={true}
+          >
+            <Text style={styles.basicDisabledBtnTxt}>Log food</Text>
+          </Pressable>
+        </View>
       </View>
     );
   }

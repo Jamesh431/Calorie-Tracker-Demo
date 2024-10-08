@@ -20,6 +20,8 @@ const barcodeScannerStyles = StyleSheet.create({
     backgroundColor: "black",
     padding: 10,
   },
+
+  resultsContainer: {},
 });
 
 export { barcodeScannerStyles };

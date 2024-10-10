@@ -11,6 +11,7 @@ export default async function handleFoodFetch(foodCode: string) {
 
     if (foodObj?.foodNutrients) {
       for (const nutrient of foodObj.foodNutrients) {
+        console.log("nutrient: ", nutrient);
         nutrientsArr.push({
           name: nutrient.nutrientName,
           amount: nutrient.nutrientNumber,
@@ -20,7 +21,7 @@ export default async function handleFoodFetch(foodCode: string) {
     }
 
     let newObj = {
-      name: `${foodObj.brandName} ${foodObj.description}`,
+      name: `${foodObj?.brandName} ${foodObj.description}`,
       brandOwner: foodObj.brandOwner,
       servingSizeUnit: foodObj.servingSizeUnit,
       servingSize: foodObj.servingSize,
@@ -36,6 +37,7 @@ export default async function handleFoodFetch(foodCode: string) {
 
   try {
     const response = await axios.get(reqUrl);
+    console.log("response: ", response);
 
     const foodResults = parseObj(response.data.foods[0]);
 
